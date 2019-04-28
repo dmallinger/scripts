@@ -49,7 +49,7 @@ apt install -y libpam-google-authenticator
 echo "#
 # /etc/pam.d/common-2fa - settings for requiring 2FA
 # 
-auth	required	pam_google_authenticator.so" > /etc/pam.d/common-2fa
+auth    required    pam_google_authenticator.so" > /etc/pam.d/common-2fa
 echo "@include common-2fa" >> /etc/pam.d/sshd
 echo "@include common-2fa" >> /etc/pam.d/sudo
 
