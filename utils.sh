@@ -4,7 +4,7 @@
 # Takes a parameter (default 20) and returns a random password
 # of that length with easy to delineate characters.
 function gen_pass {
-    echo perl -le 'my @chars = split("", join("", a..h, j..k, p..z, A..A, C..H, J..K, P..R, T..Y, 2..9, "!@#%&*-?+=")); print map{@chars [rand $#chars]} 0..((shift||20)-1)' $1
+    echo $(perl -le 'my @chars = split("", join("", a..h, j..k, p..t, w..y, A..A, E..H, J..K, P..R, T..Y, 2..9, "!@#%&*-?+=")); print map{@chars [rand $#chars]} 0..((shift||20)-1)' $1)
 }
 
 

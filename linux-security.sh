@@ -62,6 +62,13 @@ dpkg -i $DYNU_FILE
 rm $DYNU_FILE
 systemctl enable dynuiuc
 
+
+# configure the RSA token creator.  Not required but helpful
+# for places where digital 2FA is not supported but physical devices are
+apt install -y python3-pip qrencode
+pip3 install https://github.com/dlenski/python-vipaccess/archive/HEAD.zip
+
+
 # Ensure all services are running with the right configs
 systemctl restart ssh sshd fail2ban sendmail dynuiuc
 
