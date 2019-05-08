@@ -4,8 +4,13 @@
 # Takes a parameter (default 20) and returns a random password
 # of that length with easy to delineate characters.
 function gen_pass {
-    echo $(perl -le 'my @chars = split("", join("", a..h, j..k, p..t, w..y, A..A, E..H, J..K, P..R, T..Y, 2..9, "!@#%&*-?+=")); print map{@chars [rand $#chars]} 0..((shift||20)-1)' $1)
+    local length=$1
+    if [ -z "$length" ]; then
+        length=20
+    fi
+    echo $(cat /dev/urandom | LC_ALL=C tr -dc 'a-hj-kp-tw-yAE-HJ-KP-RT-Y2-69!@#&?+=' | fold -$length | head -1)
 }
+
 
 
 # Tunnel to Jupyter Notebook
@@ -32,7 +37,7 @@ function notebook_tunnel {
           notebook_port="${1#*=}"
           ;;
         *)
-          printf "* Error: Invalid argument.*\n"
+          echo "Error: Invalid argument: $1"
           return 1
       esac
       shift

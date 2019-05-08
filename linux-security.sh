@@ -73,10 +73,6 @@ pip3 install https://github.com/dlenski/python-vipaccess/archive/HEAD.zip
 systemctl restart ssh sshd fail2ban sendmail dynuiuc
 
 
-# Ensure current user has 2FA keys (otherwise, you'll lose access!)
-google-authenticator -t -d -f -w 1 -u -l "$USER@$HOSTNAME"
-
-
 # Exiting
 echo '
 Setup complete. Don not forget to configure your 2FA app.
