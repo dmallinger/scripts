@@ -11,5 +11,5 @@ apt -y update
 apt -y upgrade
 
 # Other packages we rely on
-apt install -y screen tmux vim
+apt install -y screen tmux vim curl git
 apt install -y python3-venv

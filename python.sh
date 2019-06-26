@@ -6,6 +6,7 @@ if [ "$EUID" -eq 0 ]
 fi
 
 python3 -m venv ~/venv/default
+source ~/venv/default/bin/activate
 
 pip install ipython jupyter
 pip install numpy scipy sklearn gensim
@@ -25,9 +26,10 @@ function activate {
     if [ ! -f $ACTIVATE_FILE ]
         then echo "Could not find activate file: $ACTIVATE_FILE"
     else
-        deactivate || echo "No activate venv to deactivate"
+        deactivate || echo "[INFO] No active venv to deactivate"
         source $ACTIVATE_FILE
         alias notebook="jupyter notebook --ip=$HOSTNAME --no-browser &"
+        PS1="($NAME) \[\e[38;5;21m\e[1m\]\w\[\e[m\]\\$ "
     fi    
 }
 ' >> ~/.bashrc
