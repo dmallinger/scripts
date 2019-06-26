@@ -69,6 +69,12 @@ apt install -y python3-pip qrencode
 pip3 install https://github.com/dlenski/python-vipaccess/archive/HEAD.zip
 
 
+# Similarly, configure Yubico Authenticator for using keys from this
+# machine when it's a desktop.
+add-apt-repository -y ppa:yubico/stable && apt -y update
+apt install -y yubioath-desktop
+
+
 # Ensure all services are running with the right configs
 systemctl restart ssh sshd fail2ban sendmail dynuiuc
 
@@ -85,5 +91,3 @@ If you want to run DDNS make sure you do the following:
 
 Lastly, definitely check that everything works as expected.
 '
-
-
