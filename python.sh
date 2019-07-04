@@ -15,6 +15,17 @@ pip install numpy scipy sklearn gensim
 # user an activate function for switching between them.
 echo '
 
+function venv {
+    local NAME=$1
+
+    if [ -z "$NAME" ]; then
+        echo "Please pass a name for your venv."
+        exit
+    fi
+
+    python3 -m venv $NAME ~/venv/$NAME
+}
+
 function activate {
     local NAME=$1
     
@@ -28,8 +39,8 @@ function activate {
     else
         deactivate || echo "[INFO] No active venv to deactivate"
         source $ACTIVATE_FILE
-        alias notebook="jupyter notebook --ip=$HOSTNAME --no-browser &"
-        PS1="($NAME) \[\e[38;5;21m\e[1m\]\w\[\e[m\]\\$ "
+        alias notebook="jupyter notebook --ip=0.0.0.0 --no-browser &"
+        PS1="($NAME) \[\e[166;33;82m\e[1m\]\w\[\e[m\]\\$ "
     fi    
 }
 ' >> ~/.bashrc
