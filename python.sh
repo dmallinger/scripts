@@ -5,6 +5,10 @@ if [ "$EUID" -eq 0 ]
   exit
 fi
 
+# make sure pythong 3 with venv is installed
+sudo apt install -y python3-venv
+
+# create a default working space
 python3 -m venv ~/venv/default
 source ~/venv/default/bin/activate
 
