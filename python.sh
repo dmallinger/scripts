@@ -15,6 +15,17 @@ pip install numpy scipy sklearn gensim
 # user an activate function for switching between them.
 echo '
 
+function venv {
+    local NAME=$1
+
+    if [ -z "$NAME" ]; then
+        echo "Please pass a name for your venv."
+        exit
+    fi
+
+    python3 -m venv $NAME ~/venv/$NAME
+}
+
 function activate {
     local NAME=$1
     

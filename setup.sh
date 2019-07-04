@@ -12,5 +12,5 @@ apt -y upgrade
 
 # Other packages we rely on
 apt install -y screen tmux xscreensaver
-apt install -y python3-venv vim curl git
+apt install -y python3-venv vim curl git npm
 apt install -y pavucontrol # helps audio out over HDMI on Ubuntu
