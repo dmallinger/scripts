@@ -83,7 +83,7 @@ systemctl restart ssh sshd fail2ban sendmail dynuiuc
 echo '
 Setup complete. Do not forget to configure your 2FA app.
 To generate one for your current user run the following:
-     google-authenticator -t -d -f -w 1 -u -l "$USER@$HOSTNAME"
+     google-authenticator -t -d -f -w 3 -u -l "$USER@$HOSTNAME"
 
 If you want to run DDNS make sure you do the following:
      In /etc/dynuiuc/dynuiuc.conf
