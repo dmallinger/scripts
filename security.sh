@@ -22,7 +22,7 @@ apt install -y openssh-server
 sed -i 's/^.*Port 22.*$/Port 2222/g' /etc/ssh/sshd_config
 # And ensure SSH supports 2FA
 sed -i 's/^UsePAM.*$/UsePAM yes/g' /etc/ssh/sshd_config
-sed -i 's/^ChallengeResponseAuthentication.*$/ChallengeResponseAuthentication yes/g' /etc/ssh/sshd_config
+sed -i 's/^KbdInteractiveAuthentication.*$/KbdInteractiveAuthentication yes/g' /etc/ssh/sshd_config
 
 
 # Install and enable Fail2Ban to block attacks
@@ -55,18 +55,15 @@ echo "@include common-2fa" >> /etc/pam.d/sudo
 
 
 # configure Dynu
-DYNU_URL='https://www.dynu.com/support/downloadfile/31'
-DYNU_FILE=`mktemp`
-wget "$DYNU_URL" -qO $DYNU_FILE 
-dpkg -i $DYNU_FILE
-rm $DYNU_FILE
-systemctl enable dynuiuc
-
+sudo add-apt-repository ppa:dotnet/backports
+sudo apt install -y dotnet-runtime-6.0
+sudo wget --trust-server-names https://www.dynu.com/support/downloadfile/67
+sudo apt install -y ./dynu-ip-update-client_0.1.0-1_amd64.deb
 
 # configure the RSA token creator.  Not required but helpful
 # for places where digital 2FA is not supported but physical devices are
-apt install -y python3-pip qrencode
-pip3 install https://github.com/dlenski/python-vipaccess/archive/HEAD.zip
+apt install -y python3-pip qrencode pipx
+pipx install python-vipaccess
 
 
 # Similarly, configure Yubico Authenticator for using keys from this
@@ -76,7 +73,7 @@ apt install -y yubioath-desktop
 
 
 # Ensure all services are running with the right configs
-systemctl restart ssh sshd fail2ban sendmail dynuiuc
+systemctl restart ssh fail2ban sendmail dynuiuc
 
 
 # Exiting
@@ -86,8 +83,8 @@ To generate one for your current user run the following:
      google-authenticator -t -d -f -w 3 -u -l "$USER@$HOSTNAME"
 
 If you want to run DDNS make sure you do the following:
-     In /etc/dynuiuc/dynuiuc.conf
-     Update the configurations and use IP Update Password!
+     `sudo vi /usr/share/dynu-ip-update-client/appsettings.json`
+     Update the configurations!
 
 Lastly, definitely check that everything works as expected.
 '

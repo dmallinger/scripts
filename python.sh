@@ -13,7 +13,7 @@ python3 -m venv ~/venv/default
 source ~/venv/default/bin/activate
 
 pip install ipython jupyter
-pip install numpy scipy sklearn gensim
+pip install numpy scipy pandas scikit-learn gensim torch
 
 # Now that we have a setup for multiple enviroments, we make this
 # user an activate function for switching between them.
