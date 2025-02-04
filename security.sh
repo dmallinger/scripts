@@ -73,7 +73,7 @@ apt install -y yubioath-desktop
 
 
 # Ensure all services are running with the right configs
-systemctl restart ssh fail2ban sendmail dynuiuc
+systemctl restart ssh fail2ban sendmail dynu-ip-update-client.service
 
 
 # Exiting
@@ -84,7 +84,8 @@ To generate one for your current user run the following:
 
 If you want to run DDNS make sure you do the following:
      `sudo vi /usr/share/dynu-ip-update-client/appsettings.json`
-     Update the configurations!
+     Update the configurations and then run:
+     `sudo systemctl restart dynu-ip-update-client.service`
 
 Lastly, definitely check that everything works as expected.
 '
