@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/zsh
 
 # Generate Password
 # Takes a parameter (default 20) and returns a random password
@@ -14,34 +14,11 @@ function gen_pass {
 
 
 # Tunnel to Jupyter Notebook
-# Takes parameters by name and then opens an SSH tunnel that allows
+# Takes parameters by order and then opens an SSH tunnel that allows
 # you to open Notebooks on the remote server locally.
+#
+# Example usage: `notebook_tunnel hostname 22 8888 8888`
 function notebook_tunnel {
-    local ssh_host=""
-    local ssh_port=2222
-    local local_port=8888
-    local notebook_port=8888
-    
-    while [ $# -gt 0 ]; do
-      case "$1" in
-        --ssh-host=*)
-          ssh_host="${1#*=}"
-          ;;
-        --ssh-port=*)
-          ssh_port="${1#*=}"
-          ;;
-        --local-port=*)
-          local_port="${1#*=}"
-          ;;
-        --notebook-port=*)
-          notebook_port="${1#*=}"
-          ;;
-        *)
-          echo "Error: Invalid argument: $1"
-          return 1
-      esac
-      shift
-    done
-    
-    ssh -p $ssh_port -N -f -L localhost:$local_port:localhost:$notebook_port $ssh_host
+    ssh -p $2 -N -f -L localhost:${4}:localhost:$3 $1
 }
+
