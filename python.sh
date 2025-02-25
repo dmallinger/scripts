@@ -13,7 +13,7 @@ python3 -m venv ~/venv/ml
 source ~/venv/ml/bin/activate
 
 pip install ipython jupyter
-pip install numpy scipy pandas scikit-learn statsmodels matplotlib seaborn nltk gensim torch
+pip install numpy scipy pandas scikit-learn statsmodels matplotlib seaborn nltk gensim torch datasets
 
 # Now that we have a setup for multiple enviroments, we make this
 # user an activate function for switching between them.
