@@ -55,16 +55,9 @@ echo "@include common-2fa" >> /etc/pam.d/sudo
 
 
 # configure Dynu
-sudo add-apt-repository ppa:dotnet/backports
-sudo apt install -y dotnet-runtime-6.0
-sudo wget --trust-server-names https://www.dynu.com/support/downloadfile/67
-sudo apt install -y ./dynu-ip-update-client_0.1.0-1_amd64.deb
-
-# configure the RSA token creator.  Not required but helpful
-# for places where digital 2FA is not supported but physical devices are
-apt install -y python3-pip qrencode pipx
-pipx install python-vipaccess
-
+apt install dotnet-runtime-8.0
+wget --trust-server-names https://www.dynu.com/support/downloadfile/69
+apt install ./dynu-ip-update-client_1.0.2-1_amd64.deb
 
 # Similarly, configure Yubico Authenticator for using keys from this
 # machine when it's a desktop.
