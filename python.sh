@@ -22,8 +22,8 @@ function venv {
         if [ -z "$VERSION" ]; then
             uv venv ~/venv/$NAME
         else
-	    uv venv --python $VERSION ~/venv/$NAME
-	fi
+            uv venv --python $VERSION ~/venv/$NAME
+        fi
     fi
 }
 
@@ -34,16 +34,16 @@ function activate {
         echo "Please pass the name of your venv."
     else
         local ACTIVATE_FILE=~/venv/$NAME/bin/activate
-	if [ ! -f $ACTIVATE_FILE ]; then
+        if [ ! -f $ACTIVATE_FILE ]; then
             echo "Could not find activate file: $ACTIVATE_FILE"
-	else
+        else
             deactivate || echo "[INFO] No active venv to deactivate"
-	    source $ACTIVATE_FILE
-	    alias notebook="jupyter notebook --ip=0.0.0.0 --no-browser &"
+            source $ACTIVATE_FILE
+            alias notebook="jupyter notebook --ip=0.0.0.0 --no-browser &"
             PS1="($NAME) \[\e[166;33;82m\e[1m\]\w\[\e[m\]\\$ "
         fi
     fi
-}    
+}
 ' >> /etc/bash.bashrc
 
 echo "
