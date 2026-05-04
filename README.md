@@ -10,5 +10,6 @@ Included scripts:
 	1. 2FA
 	1. Brute force detection and blocking
 	1. Various 2FA token tools
-1. `ai.sh`: Local LLM setup and tooling
+1. `ai.sh`: Local LLM setup and tooling. `python.sh` must be run first!
+1. `ddns.sh`: Helper for updating DDNS with Dynu
 1. `utils.sh`: Helper functions and aliases that can be put into or referenced from a bashrc file.
