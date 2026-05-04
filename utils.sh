@@ -15,10 +15,10 @@ function gen_pass {
 
 # Tunnel to Jupyter Notebook
 # Takes parameters by order and then opens an SSH tunnel that allows
-# you to open Notebooks on the remote server locally.
+# you to open Notebooks and other services on the remote server locally.
 #
-# Example usage: `notebook_tunnel hostname 22 8888 8888`
-function notebook_tunnel {
+# Example usage: `ssh_tunnel hostname 22 8888 8888`
+function ssh_tunnel {
     ssh -p $2 -N -f -L localhost:${4}:localhost:$3 $1
 }
 
