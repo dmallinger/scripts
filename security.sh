@@ -55,6 +55,7 @@ echo "@include common-2fa" >> /etc/pam.d/sudo
 
 
 # configure Dynu
+add-apt-repository ppa:dotnet/backports
 apt install dotnet-runtime-8.0
 wget --trust-server-names https://www.dynu.com/support/downloadfile/69
 apt install ./dynu-ip-update-client_1.0.2-1_amd64.deb
