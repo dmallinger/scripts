@@ -54,20 +54,8 @@ echo "@include common-2fa" >> /etc/pam.d/sshd
 echo "@include common-2fa" >> /etc/pam.d/sudo
 
 
-# configure Dynu
-add-apt-repository ppa:dotnet/backports
-apt install dotnet-runtime-8.0
-wget --trust-server-names https://www.dynu.com/support/downloadfile/69
-apt install ./dynu-ip-update-client_1.0.2-1_amd64.deb
-
-# Similarly, configure Yubico Authenticator for using keys from this
-# machine when it's a desktop.
-add-apt-repository -y ppa:yubico/stable && apt -y update
-apt install -y yubioath-desktop
-
-
 # Ensure all services are running with the right configs
-systemctl restart ssh fail2ban sendmail dynu-ip-update-client.service
+systemctl restart ssh fail2ban sendmail 
 
 
 # Exiting
@@ -76,10 +64,4 @@ Setup complete. Do not forget to configure your 2FA app.
 To generate one for your current user run the following:
      google-authenticator -t -d -f -w 3 -u -l "$USER@$HOSTNAME"
 
-If you want to run DDNS make sure you do the following:
-     `sudo vi /usr/share/dynu-ip-update-client/appsettings.json`
-     Update the configurations and then run:
-     `sudo systemctl restart dynu-ip-update-client.service`
-
-Lastly, definitely check that everything works as expected.
-'
+Lastly, definitely check that everything works as expected.'
