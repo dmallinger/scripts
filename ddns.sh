@@ -7,8 +7,7 @@ if [ "$EUID" -ne 0 ]
 fi
 
 mkdir -p /etc/dynu/
-echo '
-#!/bin/bash
+echo '#!/bin/bash
 
 USERNAME=ENTERUSERNAME
 PASSWORD=ENTERHASHEDPASSWORD
@@ -19,10 +18,12 @@ ANSWER=$(wget -q -O - "$URL")
 
 echo $ANSWER' > /etc/dynu/cron.sh
 
+chmod +x /etc/dynu/cron.sh
+
 echo '
 */15 * * * * root /etc/dynu/cron.sh' > /etc/cron.d/dynu
 
 echo '
 Process complete.
 
-Please edit /etc/dynu/cron.sh and update the USERNAME and PASSWORD (hashed).'
+Please edit /etc/dynu/cron.sh and update the USERNAME and PASSWORD. Note, the password is the IP update password, not login!'
