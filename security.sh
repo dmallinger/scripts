@@ -18,6 +18,8 @@ sed -i 's/^.*auth[[:space:]]*required[[:space:]]*pam_wheel.so$/auth\trequired\tp
 
 # Ubuntu desktop doesn't include SSH by default
 apt install -y openssh-server
+# Disable root login
+sed -i 's/^.*PermitRootLogin.*$/PermitRootLogin no/g' /etc/ssh/sshd_config
 # Move SSH to a nonstandard port
 sed -i 's/^.*Port 22.*$/Port 2222/g' /etc/ssh/sshd_config
 # And ensure SSH supports 2FA
