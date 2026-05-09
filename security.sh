@@ -56,8 +56,17 @@ echo "@include common-2fa" >> /etc/pam.d/sshd
 echo "@include common-2fa" >> /etc/pam.d/sudo
 
 
+# Install Yubico Authenticator
+apt install -y pcscd
+systemctl enable --now pcscd
+curl -o /tmp/yubico-authenticator.tar.gz https://developers.yubico.com/yubioath-flutter/Releases/yubico-authenticator-7.3.3-linux.tar.gz
+mkdir /etc/yubico-authenticator
+tar -xzf yubico-authenticator.tar.gz -C /etc/yubico-authenticator --strip-components=1
+ln -s /etc/yubico-authenticator/authenticator /usr/local/bin/yubico-authenticator
+
+
 # Ensure all services are running with the right configs
-systemctl restart ssh fail2ban sendmail 
+systemctl restart ssh fail2ban sendmail pcscd
 
 
 # Exiting
