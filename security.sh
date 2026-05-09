@@ -61,7 +61,7 @@ apt install -y pcscd
 systemctl enable --now pcscd
 curl -o /tmp/yubico-authenticator.tar.gz https://developers.yubico.com/yubioath-flutter/Releases/yubico-authenticator-7.3.3-linux.tar.gz
 mkdir /etc/yubico-authenticator
-tar -xzf /etc/yubico-authenticator.tar.gz -C /etc/yubico-authenticator --strip-components=1
+tar -xzf /tmp/yubico-authenticator.tar.gz -C /etc/yubico-authenticator --strip-components=1
 ln -s /etc/yubico-authenticator/authenticator /usr/local/bin/yubico-authenticator
 
 
